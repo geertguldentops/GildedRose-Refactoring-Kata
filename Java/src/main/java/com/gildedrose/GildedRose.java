@@ -28,9 +28,11 @@ class GildedRose {
                         item.decreaseQuality(1);
                     }
                 } else {
-                    item.increaseQuality(1);
+                    if (item.isAgedBrie()) {
+                        item.increaseQuality(1);
+                    } else if (item.isBackStagePasses()) {
+                        item.increaseQuality(1);
 
-                    if (item.isBackStagePasses()) {
                         if (item.getSellByDate() < 11) {
                             item.increaseQuality(1);
 
