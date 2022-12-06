@@ -50,6 +50,10 @@ public class Item {
         }
     }
 
+    public void dropQualityToZero() {
+        setQuality(0);
+    }
+
     @Override
     public String toString() {
         return this.getName() + ", " + this.getSellByDate() + ", " + this.getQuality();
