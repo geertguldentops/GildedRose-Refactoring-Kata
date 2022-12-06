@@ -18,9 +18,7 @@ class GildedRose {
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
         for (Item item : items) {
-            if (item.isSulfuras()) {
-                // Do Nothing
-            } else if (item.isNormal()) {
+            if (item.isNormal()) {
                 item.decreaseQuality(1);
 
                 item.decreaseSellByDate();
@@ -52,6 +50,8 @@ class GildedRose {
                 if (item.getSellByDate() < 0) {
                     item.dropQualityToZero();
                 }
+            } else if (item.isSulfuras()) {
+                // Do Nothing
             }
         }
     }

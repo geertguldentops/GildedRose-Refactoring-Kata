@@ -22,7 +22,7 @@ public class Item {
     }
 
     public boolean isNormal() {
-        return !isAgedBrie() && !isBackStagePasses();
+        return !isAgedBrie() && !isBackStagePasses() && !isSulfuras();
     }
 
     public boolean isBackStagePasses() {
