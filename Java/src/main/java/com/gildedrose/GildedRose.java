@@ -47,10 +47,8 @@ class GildedRose {
                     }
 
                     item.decreaseSellByDate();
-                }
 
-                if (item.getSellByDate() < 0) {
-                    if (item.isBackStagePasses()) {
+                    if (item.getSellByDate() < 0) {
                         item.dropQualityToZero();
                     }
                 }
