@@ -4,7 +4,7 @@ public class Item {
 
     private String name;
 
-    public int sellByDate;
+    private int sellByDate;
 
     private int quality;
 
@@ -22,6 +22,10 @@ public class Item {
         return sellByDate;
     }
 
+    public void setSellByDate(int sellByDate) {
+        this.sellByDate = sellByDate;
+    }
+
     public int getQuality() {
         return quality;
     }
@@ -32,7 +36,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return this.getName() + ", " + this.sellByDate + ", " + this.getQuality();
+        return this.getName() + ", " + this.getSellByDate() + ", " + this.getQuality();
     }
-
 }
