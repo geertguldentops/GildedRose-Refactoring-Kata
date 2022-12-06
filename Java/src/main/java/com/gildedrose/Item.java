@@ -44,6 +44,12 @@ public class Item {
         }
     }
 
+    public void increaseQuality(int improvementRate) {
+        if (getQuality() < 50) {
+            setQuality(getQuality() + improvementRate);
+        }
+    }
+
     @Override
     public String toString() {
         return this.getName() + ", " + this.getSellByDate() + ", " + this.getQuality();
