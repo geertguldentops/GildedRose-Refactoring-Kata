@@ -38,9 +38,9 @@ public class Item {
         this.quality = quality;
     }
 
-    public void decreaseQuality(int i) {
+    public void decreaseQuality(int degradationRate) {
         if (getQuality() > 0) {
-            setQuality(getQuality() - i);
+            setQuality(getQuality() - degradationRate);
         }
     }
 
