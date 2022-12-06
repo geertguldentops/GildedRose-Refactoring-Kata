@@ -31,6 +31,19 @@ class GildedRoseTest {
 					.allSatisfy(quality -> assertThat(quality).isNotNegative());
 		}
 
+		@ParameterizedTest(name = "Item with name [{0}] should never have a quality higher than 50")
+		@ValueSource(strings = { TEST_ITEM_NAME, AGED_BRIE, BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, SULFURAS_HAND_OF_RAGNAROS })
+		void item_quality_is_never_higher_than_50(String itemName) {
+			var app = new GildedRose(new Item[] { new Item(itemName, 7, 50) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getQuality)
+					.allSatisfy(quality -> assertThat(quality).isLessThanOrEqualTo(50));
+		}
+
 	}
 
 	@Nested
