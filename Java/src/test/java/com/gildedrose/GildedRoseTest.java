@@ -159,9 +159,10 @@ class GildedRoseTest {
 					);
 		}
 
-		@Test
-		void aged_brie_quality_is_never_higher_than_50_even_when_sell_by_date_has_passed() {
-			var app = new GildedRose(new Item[] { new Item(AGED_BRIE, -1, 49) });
+		@ParameterizedTest
+		@ValueSource(ints = { 0, -1, -2 })
+		void aged_brie_quality_is_never_higher_than_50_even_when_sell_by_date_is_now_or_has_passed(int sellIn) {
+			var app = new GildedRose(new Item[] { new Item(AGED_BRIE, sellIn, 49) });
 
 			app.updateQuality();
 
@@ -169,7 +170,7 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
 					.containsOnly(
-							tuple(AGED_BRIE, -2, 50)
+							tuple(AGED_BRIE, sellIn - 1, 50)
 					);
 		}
 
@@ -270,6 +271,21 @@ class GildedRoseTest {
 					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
 					.containsOnly(
 							tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 0)
+					);
+		}
+
+		@ParameterizedTest
+		@ValueSource(ints = { 11, 10, 7, 5, 4, 1 })
+		void backstage_passes_quality_is_never_higher_than_50(int sellIn) {
+			var app = new GildedRose(new Item[] { new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 49) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 50)
 					);
 		}
 
