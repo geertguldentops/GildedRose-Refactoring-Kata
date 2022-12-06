@@ -1,20 +1,19 @@
 package com.gildedrose;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
-
-import static java.util.stream.Collectors.toUnmodifiableList;
+import java.util.Collections;
 
 class GildedRose {
 
-    private final Item[] items;
+    private final Collection<Item> items = new ArrayList<>();
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        Collections.addAll(this.items, items);
     }
 
     public Collection<Item> getItems() {
-        return Arrays.stream(items).collect(toUnmodifiableList());
+        return Collections.unmodifiableCollection(items);
     }
 
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
