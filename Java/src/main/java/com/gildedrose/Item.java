@@ -2,10 +2,9 @@ package com.gildedrose;
 
 public class Item {
 
-    private String name;
+    private final String name;
 
     private int sellByDate;
-
     private int quality;
 
     public Item(String name, int sellByDate, int quality) {
