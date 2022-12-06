@@ -34,24 +34,20 @@ public class Item {
         return quality;
     }
 
-    public void setQuality(int quality) {
-        this.quality = quality;
-    }
-
     public void decreaseQuality(int degradationRate) {
-        if (getQuality() > 0) {
-            setQuality(getQuality() - degradationRate);
+        if (quality > 0) {
+            this.quality = getQuality() - degradationRate;
         }
     }
 
     public void increaseQuality(int improvementRate) {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + improvementRate);
+        if (quality < 50) {
+            this.quality = getQuality() + improvementRate;
         }
     }
 
     public void dropQualityToZero() {
-        setQuality(0);
+        this.quality = 0;
     }
 
     @Override
