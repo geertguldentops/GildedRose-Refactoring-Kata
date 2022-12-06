@@ -30,6 +30,10 @@ public class Item {
         this.sellByDate = sellByDate;
     }
 
+    public void decreaseSellByDate() {
+        setSellByDate(getSellByDate() - 1);
+    }
+
     public int getQuality() {
         return quality;
     }

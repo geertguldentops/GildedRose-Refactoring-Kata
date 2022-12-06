@@ -35,7 +35,7 @@ class GildedRose {
                     }
                 }
 
-                item.setSellByDate(item.getSellByDate() - 1);
+                item.decreaseSellByDate();
 
                 if (item.getSellByDate() < 0) {
                     if (!item.getName().equals("Aged Brie")) {
