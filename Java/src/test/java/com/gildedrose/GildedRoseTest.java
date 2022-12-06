@@ -25,7 +25,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items).isEmpty();
+            assertThat(app.getItems()).isEmpty();
         }
 
     }
@@ -40,7 +40,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getQuality)
                     .allSatisfy(quality -> assertThat(quality).isNotNegative());
@@ -53,7 +53,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getQuality)
                     .allSatisfy(quality -> assertThat(quality).isLessThanOrEqualTo(50));
@@ -71,7 +71,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -86,7 +86,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -101,7 +101,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -116,7 +116,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -135,7 +135,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -150,7 +150,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -165,7 +165,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -180,7 +180,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -200,7 +200,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getQuality)
                     .containsOnly(
@@ -215,7 +215,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate)
                     .containsOnly(
@@ -236,7 +236,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -251,7 +251,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -266,7 +266,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -281,7 +281,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -296,7 +296,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(1)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
@@ -318,7 +318,7 @@ class GildedRoseTest {
 
             app.updateQuality();
 
-            assertThat(app.items)
+            assertThat(app.getItems())
                     .hasSize(2)
                     .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(

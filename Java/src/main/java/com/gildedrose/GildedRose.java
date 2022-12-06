@@ -2,10 +2,14 @@ package com.gildedrose;
 
 class GildedRose {
 
-    Item[] items;
+    private Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
@@ -61,4 +65,5 @@ class GildedRose {
             }
         }
     }
+
 }
