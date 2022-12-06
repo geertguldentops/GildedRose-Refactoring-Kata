@@ -68,6 +68,21 @@ class GildedRoseTest {
 
 		@ParameterizedTest
 		@ValueSource(strings = { TEST_ITEM_NAME, ANOTHER_TEST_ITEM_NAME })
+		void item_sell_by_date_and_quality_go_down_by_1_each_day_when_sell_by_date_now(String itemName) {
+			var app = new GildedRose(new Item[] { new Item(itemName, 0, 5) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(itemName, -1, 3)
+					);
+		}
+
+		@ParameterizedTest
+		@ValueSource(strings = { TEST_ITEM_NAME, ANOTHER_TEST_ITEM_NAME })
 		void item_degrades_in_quality_twice_as_fast_when_sell_by_date_has_passed(String itemName) {
 			var app = new GildedRose(new Item[] { new Item(itemName, -1, 5) });
 
