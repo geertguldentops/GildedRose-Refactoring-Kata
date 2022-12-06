@@ -18,39 +18,39 @@ class GildedRose {
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.isSulfuras()) {
-                if (item.isNormal()) {
+            if (item.isSulfuras()) {
+                // Do Nothing
+            } else if (item.isNormal()) {
+                item.decreaseQuality(1);
+
+                item.decreaseSellByDate();
+
+                if (item.getSellByDate() < 0) {
                     item.decreaseQuality(1);
+                }
+            } else if (item.isAgedBrie()) {
+                item.increaseQuality(1);
 
-                    item.decreaseSellByDate();
+                item.decreaseSellByDate();
 
-                    if (item.getSellByDate() < 0) {
-                        item.decreaseQuality(1);
-                    }
-                } else if (item.isAgedBrie()) {
+                if (item.getSellByDate() < 0) {
+                    item.increaseQuality(1);
+                }
+            } else if (item.isBackStagePasses()) {
+                item.increaseQuality(1);
+
+                if (item.getSellByDate() < 11) {
                     item.increaseQuality(1);
 
-                    item.decreaseSellByDate();
-
-                    if (item.getSellByDate() < 0) {
-                        item.increaseQuality(1);
-                    }
-                } else if (item.isBackStagePasses()) {
+                }
+                if (item.getSellByDate() < 6) {
                     item.increaseQuality(1);
+                }
 
-                    if (item.getSellByDate() < 11) {
-                        item.increaseQuality(1);
+                item.decreaseSellByDate();
 
-                    }
-                    if (item.getSellByDate() < 6) {
-                        item.increaseQuality(1);
-                    }
-
-                    item.decreaseSellByDate();
-
-                    if (item.getSellByDate() < 0) {
-                        item.dropQualityToZero();
-                    }
+                if (item.getSellByDate() < 0) {
+                    item.dropQualityToZero();
                 }
             }
         }
