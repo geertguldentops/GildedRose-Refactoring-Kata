@@ -17,6 +17,20 @@ class GildedRoseTest {
     private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
 
     @Nested
+    class DegenerateTestCases {
+
+        @Test
+        void update_quality_when_no_items() {
+            var app = new GildedRose(new Item[0]);
+
+            app.updateQuality();
+
+            assertThat(app.items).isEmpty();
+        }
+
+    }
+
+    @Nested
     class Invariants {
 
         @ParameterizedTest(name = "Item with name [{0}] should never have a negative quality")
