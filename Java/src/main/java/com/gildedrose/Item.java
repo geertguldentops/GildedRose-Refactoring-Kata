@@ -7,6 +7,10 @@ public class Item {
     private int sellByDate;
     private int quality;
 
+    public static Item of(String name, int sellByDate, int quality) {
+        return new Item(name, sellByDate, quality);
+    }
+
     public Item(String name, int sellByDate, int quality) {
         this.name = name;
         this.sellByDate = sellByDate;
