@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +12,7 @@ import static org.assertj.core.groups.Tuple.tuple;
 class GildedRoseTest {
 
 	private static final String TEST_ITEM_NAME = "Test item name";
+	private static final String ANOTHER_TEST_ITEM_NAME = "Another test item name";
 	private static final String AGED_BRIE = "Aged Brie";
 	private static final String BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
 	private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
@@ -42,6 +44,26 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getQuality)
 					.allSatisfy(quality -> assertThat(quality).isLessThanOrEqualTo(50));
+		}
+
+	}
+
+	@Nested
+	class NormalItem {
+
+		@ParameterizedTest
+		@ValueSource(strings = { TEST_ITEM_NAME, ANOTHER_TEST_ITEM_NAME })
+		void item_sell_in_and_quality_go_down_by_1_each_day(String itemName) {
+			var app = new GildedRose(new Item[] { new Item(itemName, 7, 5) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(itemName, 6, 4)
+					);
 		}
 
 	}
