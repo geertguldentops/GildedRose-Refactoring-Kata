@@ -27,4 +27,26 @@ class GildedRoseTest {
 
 	}
 
+	@Nested
+	class Sulfuras {
+
+		@Test
+		void sulfuras_does_not_change_quality() {
+			GildedRose app = new GildedRose(new Item[] { new Item("Sulfuras, Hand of Ragnaros", 7, 5) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple("Sulfuras, Hand of Ragnaros", 7, 5)
+					);
+
+		}
+
+		// TODO: Also never sold
+
+	}
+
 }
