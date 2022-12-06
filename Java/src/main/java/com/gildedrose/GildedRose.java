@@ -1,5 +1,10 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import static java.util.stream.Collectors.toUnmodifiableList;
+
 class GildedRose {
 
     private final Item[] items;
@@ -8,8 +13,8 @@ class GildedRose {
         this.items = items;
     }
 
-    public Item[] getItems() {
-        return items;
+    public Collection<Item> getItems() {
+        return Arrays.stream(items).collect(toUnmodifiableList());
     }
 
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
