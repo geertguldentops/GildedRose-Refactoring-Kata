@@ -2,7 +2,7 @@ package com.gildedrose;
 
 public class Item {
 
-    public String name;
+    private String name;
 
     public int sellByDate;
 
@@ -28,6 +28,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return this.name + ", " + this.sellByDate + ", " + this.quality;
+        return this.getName() + ", " + this.sellByDate + ", " + this.quality;
     }
+
 }
