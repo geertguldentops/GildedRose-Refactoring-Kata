@@ -38,6 +38,12 @@ public class Item {
         this.quality = quality;
     }
 
+    public void decreaseQuality(int i) {
+        if (getQuality() > 0) {
+            setQuality(getQuality() - i);
+        }
+    }
+
     @Override
     public String toString() {
         return this.getName() + ", " + this.getSellByDate() + ", " + this.getQuality();

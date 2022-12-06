@@ -20,9 +20,7 @@ class GildedRose {
         for (Item item : items) {
             if (!item.getName().equals("Sulfuras, Hand of Ragnaros")) {
                 if (item.isNormal()) {
-                    if (item.getQuality() > 0) {
-                        item.setQuality(item.getQuality() - 1);
-                    }
+                    item.decreaseQuality(1);
                 } else {
                     if (item.getQuality() < 50) {
                         item.setQuality(item.getQuality() + 1);
