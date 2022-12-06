@@ -26,12 +26,8 @@ public class Item {
         return sellByDate;
     }
 
-    public void setSellByDate(int sellByDate) {
-        this.sellByDate = sellByDate;
-    }
-
     public void decreaseSellByDate() {
-        setSellByDate(getSellByDate() - 1);
+        this.sellByDate = getSellByDate() - 1;
     }
 
     public int getQuality() {
