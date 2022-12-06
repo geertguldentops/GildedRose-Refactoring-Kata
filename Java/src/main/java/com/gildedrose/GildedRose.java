@@ -1,19 +1,14 @@
 package com.gildedrose;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
 class GildedRose {
 
-    private final Collection<Item> items = new ArrayList<>();
-
-    public GildedRose(Item[] items) {
-        Collections.addAll(this.items, items);
-    }
+    private final Collection<Item> items;
 
     public GildedRose(Collection<Item> items) {
-        this(items.toArray(new Item[]{}));
+        this.items = items;
     }
 
     public Collection<Item> getItems() {
