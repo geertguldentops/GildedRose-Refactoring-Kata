@@ -292,4 +292,27 @@ class GildedRoseTest {
 
     }
 
+    @Nested
+    class MultipleItems {
+
+        @Test
+        void update_quality_of_multiple_items_at_the_same_time() {
+            var app = new GildedRose(new Item[]{
+                    new Item(TEST_ITEM_NAME, 7, 5),
+                    new Item(ANOTHER_TEST_ITEM_NAME, -1, 3)
+            });
+
+            app.updateQuality();
+
+            assertThat(app.items)
+                    .hasSize(2)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
+                    .containsOnly(
+                            tuple(TEST_ITEM_NAME, 6, 4),
+                            tuple(ANOTHER_TEST_ITEM_NAME, -2, 1)
+                    );
+        }
+
+    }
+
 }
