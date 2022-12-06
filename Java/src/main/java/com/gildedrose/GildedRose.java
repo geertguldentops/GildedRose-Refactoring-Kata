@@ -18,6 +18,8 @@ class GildedRose {
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
         for (Item item : items) {
+            if (item.getName().equals("Sulfuras, Hand of Ragnaros")) continue;
+
             if (!item.getName().equals("Aged Brie")
                     && !item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.getQuality() > 0) {
