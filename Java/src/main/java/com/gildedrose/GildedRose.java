@@ -12,6 +12,10 @@ class GildedRose {
         Collections.addAll(this.items, items);
     }
 
+    public GildedRose(Collection<Item> items) {
+        this(items.toArray(new Item[]{}));
+    }
+
     public Collection<Item> getItems() {
         return Collections.unmodifiableCollection(items);
     }
