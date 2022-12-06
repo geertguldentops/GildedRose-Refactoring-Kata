@@ -8,6 +8,7 @@ class GildedRose {
         this.items = items;
     }
 
+    // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
         for (Item item : items) {
             if (!item.getName().equals("Aged Brie")
