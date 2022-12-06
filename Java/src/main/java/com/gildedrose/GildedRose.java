@@ -12,25 +12,25 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].getName().equals("Aged Brie")
                     && !items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
+                if (items[i].getQuality() > 0) {
                     if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+                        items[i].setQuality(items[i].getQuality() - 1);
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                if (items[i].getQuality() < 50) {
+                    items[i].setQuality(items[i].getQuality() + 1);
 
                     if (items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].sellByDate < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                            if (items[i].getQuality() < 50) {
+                                items[i].setQuality(items[i].getQuality() + 1);
                             }
                         }
 
                         if (items[i].sellByDate < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                            if (items[i].getQuality() < 50) {
+                                items[i].setQuality(items[i].getQuality() + 1);
                             }
                         }
                     }
@@ -44,17 +44,17 @@ class GildedRose {
             if (items[i].sellByDate < 0) {
                 if (!items[i].getName().equals("Aged Brie")) {
                     if (!items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
+                        if (items[i].getQuality() > 0) {
                             if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
+                                items[i].setQuality(items[i].getQuality() - 1);
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        items[i].setQuality(items[i].getQuality() - items[i].getQuality());
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                    if (items[i].getQuality() < 50) {
+                        items[i].setQuality(items[i].getQuality() + 1);
                     }
                 }
             }
