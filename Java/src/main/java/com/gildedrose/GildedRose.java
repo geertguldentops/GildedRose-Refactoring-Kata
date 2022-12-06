@@ -30,6 +30,8 @@ class GildedRose {
                 } else {
                     if (item.isAgedBrie()) {
                         item.increaseQuality(1);
+
+                        item.decreaseSellByDate();
                     } else if (item.isBackStagePasses()) {
                         item.increaseQuality(1);
 
@@ -40,9 +42,9 @@ class GildedRose {
                         if (item.getSellByDate() < 6) {
                             item.increaseQuality(1);
                         }
-                    }
 
-                    item.decreaseSellByDate();
+                        item.decreaseSellByDate();
+                    }
                 }
 
                 if (item.getSellByDate() < 0) {
