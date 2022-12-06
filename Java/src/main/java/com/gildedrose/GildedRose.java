@@ -21,10 +21,6 @@ class GildedRose {
             if (!item.isSulfuras()) {
                 if (item.isNormal()) {
                     item.decreaseQuality(1);
-
-                    if (item.getSellByDate() < 0) {
-                        item.decreaseQuality(1);
-                    }
                 } else {
                     item.increaseQuality(1);
 
@@ -44,7 +40,7 @@ class GildedRose {
                 if (item.getSellByDate() < 0) {
                     if (!item.isAgedBrie()) {
                         if (!item.isBackStagePasses()) {
-
+                            item.decreaseQuality(1);
                         } else {
                             item.dropQualityToZero();
                         }
