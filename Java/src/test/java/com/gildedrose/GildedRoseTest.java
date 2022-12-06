@@ -179,9 +179,10 @@ class GildedRoseTest {
 	@Nested
 	class Sulfuras {
 
-		@Test
-		void sulfuras_does_not_change_quality() {
-			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, 7, 5) });
+		@ParameterizedTest
+		@ValueSource(ints = { 15, 1, 0, -1, -8 })
+		void sulfuras_does_not_change_quality(int sellIn) {
+			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, sellIn, 80) });
 
 			app.updateQuality();
 
@@ -189,14 +190,14 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getName, Item::getQuality)
 					.containsOnly(
-							tuple(SULFURAS_HAND_OF_RAGNAROS, 5)
+							tuple(SULFURAS_HAND_OF_RAGNAROS, 80)
 					);
 
 		}
 
 		@Test
 		void sulfuras_is_never_sold() {
-			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, 25, 4) });
+			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, 25, 80) });
 
 			app.updateQuality();
 
