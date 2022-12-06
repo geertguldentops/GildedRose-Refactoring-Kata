@@ -2,7 +2,7 @@ package com.gildedrose;
 
 class GildedRose {
 
-    private Item[] items;
+    private final Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
