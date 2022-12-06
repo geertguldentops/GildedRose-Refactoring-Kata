@@ -10,11 +10,16 @@ import static org.assertj.core.groups.Tuple.tuple;
 
 class GildedRoseTest {
 
+	private static final String TEST_ITEM_NAME = "Test item name";
+	private static final String AGED_BRIE = "Aged Brie";
+	private static final String BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+	private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+
 	@Nested
 	class Invariants {
 
 		@ParameterizedTest(name = "Item with name [{0}] should never have a negative quality")
-		@ValueSource(strings = { "Test item name", "Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros" })
+		@ValueSource(strings = { TEST_ITEM_NAME, AGED_BRIE, BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, SULFURAS_HAND_OF_RAGNAROS })
 		void item_quality_is_never_negative(String itemName) {
 			var app = new GildedRose(new Item[] { new Item(itemName, 7, 0) });
 
@@ -33,7 +38,7 @@ class GildedRoseTest {
 
 		@Test
 		void aged_brie_increases_in_quality() {
-			var app = new GildedRose(new Item[] { new Item("Aged Brie", 7, 5) });
+			var app = new GildedRose(new Item[] { new Item(AGED_BRIE, 7, 5) });
 
 			app.updateQuality();
 
@@ -41,7 +46,7 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
 					.containsOnly(
-							tuple("Aged Brie", 6, 6)
+							tuple(AGED_BRIE, 6, 6)
 					);
 		}
 
@@ -52,7 +57,7 @@ class GildedRoseTest {
 
 		@Test
 		void sulfuras_does_not_change_quality() {
-			var app = new GildedRose(new Item[] { new Item("Sulfuras, Hand of Ragnaros", 7, 5) });
+			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, 7, 5) });
 
 			app.updateQuality();
 
@@ -60,14 +65,14 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getName, Item::getQuality)
 					.containsOnly(
-							tuple("Sulfuras, Hand of Ragnaros", 5)
+							tuple(SULFURAS_HAND_OF_RAGNAROS, 5)
 					);
 
 		}
 
 		@Test
 		void sulfuras_is_never_sold() {
-			var app = new GildedRose(new Item[] { new Item("Sulfuras, Hand of Ragnaros", 25, 4) });
+			var app = new GildedRose(new Item[] { new Item(SULFURAS_HAND_OF_RAGNAROS, 25, 4) });
 
 			app.updateQuality();
 
@@ -75,7 +80,7 @@ class GildedRoseTest {
 					.hasSize(1)
 					.extracting(Item::getName, Item::getSellIn)
 					.containsOnly(
-							tuple("Sulfuras, Hand of Ragnaros", 25)
+							tuple(SULFURAS_HAND_OF_RAGNAROS, 25)
 					);
 
 		}
