@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +21,7 @@ class GildedRoseTest {
 
 		@ParameterizedTest(name = "Item with name [{0}] should never have a negative quality")
 		@ValueSource(strings = { TEST_ITEM_NAME, AGED_BRIE, BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, SULFURAS_HAND_OF_RAGNAROS })
-		void item_quality_is_never_negative(String itemName) {
+		void item_quality_is_never_negative_when_sell_by_day_positive(String itemName) {
 			var app = new GildedRose(new Item[] { new Item(itemName, 7, 0) });
 
 			app.updateQuality();
@@ -93,6 +92,21 @@ class GildedRoseTest {
 					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
 					.containsOnly(
 							tuple(itemName, -2, 3)
+					);
+		}
+
+		@ParameterizedTest
+		@ValueSource(strings = { TEST_ITEM_NAME, ANOTHER_TEST_ITEM_NAME })
+		void item_quality_is_never_negative_even_when_sell_by_day_has_passed(String itemName) {
+			var app = new GildedRose(new Item[] { new Item(itemName, -1, 1) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(itemName, -2, 0)
 					);
 		}
 
