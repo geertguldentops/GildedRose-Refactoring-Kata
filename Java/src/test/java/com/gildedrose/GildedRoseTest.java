@@ -258,6 +258,21 @@ class GildedRoseTest {
 					);
 		}
 
+		@ParameterizedTest
+		@ValueSource(ints = { 0, -1, -2 })
+		void backstage_passes_drop_to_0_quality_when_sell_by_date_now_or_has_passed(int sellIn) {
+			var app = new GildedRose(new Item[] { new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 0)
+					);
+		}
+
 	}
 
 }
