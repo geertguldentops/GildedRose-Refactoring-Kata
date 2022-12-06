@@ -4,13 +4,13 @@ public class Item {
 
     public String name;
 
-    public int sellIn;
+    public int sellByDate;
 
     public int quality;
 
-    public Item(String name, int sellIn, int quality) {
+    public Item(String name, int sellByDate, int quality) {
         this.name = name;
-        this.sellIn = sellIn;
+        this.sellByDate = sellByDate;
         this.quality = quality;
     }
 
@@ -18,8 +18,8 @@ public class Item {
         return name;
     }
 
-    public int getSellIn() {
-        return sellIn;
+    public int getSellByDate() {
+        return sellByDate;
     }
 
     public int getQuality() {
@@ -28,6 +28,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+        return this.name + ", " + this.sellByDate + ", " + this.quality;
     }
 }

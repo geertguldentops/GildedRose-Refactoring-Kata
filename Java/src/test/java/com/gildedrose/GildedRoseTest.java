@@ -59,7 +59,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(itemName, 6, 4)
                     );
@@ -74,7 +74,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(itemName, -1, 3)
                     );
@@ -89,7 +89,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(itemName, -2, 3)
                     );
@@ -104,7 +104,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(itemName, -2, 0)
                     );
@@ -123,7 +123,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(AGED_BRIE, 6, 6)
                     );
@@ -138,7 +138,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(AGED_BRIE, -1, 7)
                     );
@@ -153,7 +153,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
                             tuple(AGED_BRIE, -2, 7)
                     );
@@ -161,16 +161,16 @@ class GildedRoseTest {
 
         @ParameterizedTest
         @ValueSource(ints = {0, -1, -2})
-        void aged_brie_quality_is_never_higher_than_50_even_when_sell_by_date_is_now_or_has_passed(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(AGED_BRIE, sellIn, 49)});
+        void aged_brie_quality_is_never_higher_than_50_even_when_sell_by_date_is_now_or_has_passed(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(AGED_BRIE, sellByDate, 49)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(AGED_BRIE, sellIn - 1, 50)
+                            tuple(AGED_BRIE, sellByDate - 1, 50)
                     );
         }
 
@@ -181,8 +181,8 @@ class GildedRoseTest {
 
         @ParameterizedTest
         @ValueSource(ints = {15, 1, 0, -1, -8})
-        void sulfuras_does_not_change_quality(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(SULFURAS_HAND_OF_RAGNAROS, sellIn, 80)});
+        void sulfuras_does_not_change_quality(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(SULFURAS_HAND_OF_RAGNAROS, sellByDate, 80)});
 
             app.updateQuality();
 
@@ -203,7 +203,7 @@ class GildedRoseTest {
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn)
+                    .extracting(Item::getName, Item::getSellByDate)
                     .containsOnly(
                             tuple(SULFURAS_HAND_OF_RAGNAROS, 25)
                     );
@@ -217,76 +217,76 @@ class GildedRoseTest {
 
         @ParameterizedTest
         @ValueSource(ints = {40, 12, 11})
-        void backstage_passes_increases_in_quality_by_1_when_sell_by_date_larger_than_10(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5)});
+        void backstage_passes_increases_in_quality_by_1_when_sell_by_date_larger_than_10(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate, 5)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 6)
+                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate - 1, 6)
                     );
         }
 
         @ParameterizedTest
         @ValueSource(ints = {10, 9, 8, 7, 6})
-        void backstage_passes_increases_in_quality_by_2_when_sell_by_date_between_10_and_6_inclusive(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5)});
+        void backstage_passes_increases_in_quality_by_2_when_sell_by_date_between_10_and_6_inclusive(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate, 5)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 7)
+                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate - 1, 7)
                     );
         }
 
         @ParameterizedTest
         @ValueSource(ints = {5, 4, 3, 2, 1})
-        void backstage_passes_increases_in_quality_by_3_when_sell_by_date_between_5_and_1_inclusive(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5)});
+        void backstage_passes_increases_in_quality_by_3_when_sell_by_date_between_5_and_1_inclusive(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate, 5)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 8)
+                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate - 1, 8)
                     );
         }
 
         @ParameterizedTest
         @ValueSource(ints = {0, -1, -2})
-        void backstage_passes_drop_to_0_quality_when_sell_by_date_now_or_has_passed(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5)});
+        void backstage_passes_drop_to_0_quality_when_sell_by_date_now_or_has_passed(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate, 5)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 0)
+                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate - 1, 0)
                     );
         }
 
         @ParameterizedTest
         @ValueSource(ints = {11, 10, 7, 5, 4, 1})
-        void backstage_passes_quality_is_never_higher_than_50(int sellIn) {
-            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 49)});
+        void backstage_passes_quality_is_never_higher_than_50(int sellByDate) {
+            var app = new GildedRose(new Item[]{new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate, 49)});
 
             app.updateQuality();
 
             assertThat(app.items)
                     .hasSize(1)
-                    .extracting(Item::getName, Item::getSellIn, Item::getQuality)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
                     .containsOnly(
-                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 50)
+                            tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellByDate - 1, 50)
                     );
         }
 
