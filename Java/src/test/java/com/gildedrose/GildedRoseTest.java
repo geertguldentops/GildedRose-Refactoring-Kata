@@ -215,7 +215,7 @@ class GildedRoseTest {
 
 		@ParameterizedTest
 		@ValueSource(ints = { 40, 12, 11 })
-		void backstage_passes_increases_in_quality_when_sell_by_date_larger_than_10(int sellIn) {
+		void backstage_passes_increases_in_quality_by_1_when_sell_by_date_larger_than_10(int sellIn) {
 			var app = new GildedRose(new Item[] { new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5) });
 
 			app.updateQuality();
@@ -225,6 +225,21 @@ class GildedRoseTest {
 					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
 					.containsOnly(
 							tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 6)
+					);
+		}
+
+		@ParameterizedTest
+		@ValueSource(ints = { 10, 9, 8, 7, 6 })
+		void backstage_passes_increases_in_quality_by_2_when_sell_by_date_between_10_and_5(int sellIn) {
+			var app = new GildedRose(new Item[] { new Item(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn, 5) });
+
+			app.updateQuality();
+
+			assertThat(app.items)
+					.hasSize(1)
+					.extracting(Item::getName, Item::getSellIn, Item::getQuality)
+					.containsOnly(
+							tuple(BACKSTAGE_PASSES_TO_A_TAFKAL80ETC_CONCERT, sellIn - 1, 7)
 					);
 		}
 
