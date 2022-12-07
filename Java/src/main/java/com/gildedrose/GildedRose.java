@@ -33,21 +33,10 @@ class GildedRose {
 
                 items.set(i, agedBrie);
             } else if (item.isBackStagePasses()) {
-                item.increaseQuality(1);
+                var backStagePasses = new BackStagePasses(item.getName(), item.getSellByDate(), item.getQuality());
+                backStagePasses.updateQuality();
 
-                if (item.getSellByDate() < 11) {
-                    item.increaseQuality(1);
-
-                }
-                if (item.getSellByDate() < 6) {
-                    item.increaseQuality(1);
-                }
-
-                item.decreaseSellByDate();
-
-                if (item.getSellByDate() < 0) {
-                    item.dropQualityToZero();
-                }
+                items.set(i, backStagePasses);
             } else if (item.isSulfuras()) {
                 // Do Nothing
             }
