@@ -23,18 +23,15 @@ class GildedRose {
             Item item = items.get(i);
 
             if (item.isNormal()) {
-                NormalItem normalItem = new NormalItem(item.getName(), item.getSellByDate(), item.getQuality());
+                var normalItem = new NormalItem(item.getName(), item.getSellByDate(), item.getQuality());
                 normalItem.updateQuality();
 
                 items.set(i, normalItem);
             } else if (item.isAgedBrie()) {
-                item.increaseQuality(1);
+                var agedBrie = new AgedBrie(item.getName(), item.getSellByDate(), item.getQuality());
+                agedBrie.updateQuality();
 
-                item.decreaseSellByDate();
-
-                if (item.getSellByDate() < 0) {
-                    item.increaseQuality(1);
-                }
+                items.set(i, agedBrie);
             } else if (item.isBackStagePasses()) {
                 item.increaseQuality(1);
 
