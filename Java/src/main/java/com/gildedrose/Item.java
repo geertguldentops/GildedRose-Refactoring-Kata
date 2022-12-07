@@ -8,15 +8,12 @@ public class Item {
     private int quality;
 
     public static Item of(String name, int sellByDate, int quality) {
-        if (name.equals("Aged Brie")) {
-            return new AgedBrie(name, sellByDate, quality);
-        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            return new BackStagePasses(name, sellByDate, quality);
-        } else if (name.equals("Sulfuras, Hand of Ragnaros")) {
-            return new Sulfuras(name, sellByDate, quality);
-        } else {
-            return new NormalItem(name, sellByDate, quality);
-        }
+        return switch (name) {
+            case "Aged Brie" -> new AgedBrie(name, sellByDate, quality);
+            case "Backstage passes to a TAFKAL80ETC concert" -> new BackStagePasses(name, sellByDate, quality);
+            case "Sulfuras, Hand of Ragnaros" -> new Sulfuras(name, sellByDate, quality);
+            default -> new NormalItem(name, sellByDate, quality);
+        };
     }
 
     public Item(String name, int sellByDate, int quality) {
