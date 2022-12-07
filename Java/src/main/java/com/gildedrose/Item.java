@@ -26,22 +26,6 @@ public abstract class Item {
         return name;
     }
 
-    public boolean isNormal() {
-        return !isAgedBrie() && !isBackStagePasses() && !isSulfuras();
-    }
-
-    public boolean isBackStagePasses() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
-    }
-
-    public boolean isAgedBrie() {
-        return name.equals("Aged Brie");
-    }
-
-    public boolean isSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
     public int getSellByDate() {
         return sellByDate;
     }
