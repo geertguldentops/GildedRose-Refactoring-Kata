@@ -6,6 +6,7 @@ public class Sulfuras extends Item {
         super(name, sellByDate, quality);
     }
 
+    @Override
     public void updateQuality() {
         // Do Nothing
     }

@@ -6,6 +6,7 @@ public class NormalItem extends Item {
         super(name, sellByDate, quality);
     }
 
+    @Override
     public void updateQuality() {
         decreaseQuality(1);
 

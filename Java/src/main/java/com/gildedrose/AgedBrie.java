@@ -6,6 +6,7 @@ public class AgedBrie extends Item {
         super(name, sellByDate, quality);
     }
 
+    @Override
     public void updateQuality() {
         increaseQuality(1);
 
