@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ class GildedRose {
     private final List<Item> items;
 
     public GildedRose(List<Item> items) {
-        this.items = items;
+        this.items = new ArrayList<>(items);
     }
 
     public Collection<Item> getItems() {
@@ -22,13 +23,10 @@ class GildedRose {
             Item item = items.get(i);
 
             if (item.isNormal()) {
-                item.decreaseQuality(1);
+                NormalItem normalItem = new NormalItem(item.getName(), item.getSellByDate(), item.getQuality());
+                normalItem.updateQuality();
 
-                item.decreaseSellByDate();
-
-                if (item.getSellByDate() < 0) {
-                    item.decreaseQuality(1);
-                }
+                items.set(i, normalItem);
             } else if (item.isAgedBrie()) {
                 item.increaseQuality(1);
 
