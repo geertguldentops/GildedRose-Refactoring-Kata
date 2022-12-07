@@ -17,7 +17,6 @@ class GildedRose {
         return Collections.unmodifiableCollection(items);
     }
 
-    // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
