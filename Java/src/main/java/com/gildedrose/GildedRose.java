@@ -21,10 +21,7 @@ class GildedRose {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
 
-            Item newItem = Item.of(item.getName(), item.getSellByDate(), item.getQuality());
-            newItem.updateQuality();
-
-            items.set(i, newItem);
+            item.updateQuality();
         }
     }
 
