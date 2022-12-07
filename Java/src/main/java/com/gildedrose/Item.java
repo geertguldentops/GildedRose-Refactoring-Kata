@@ -8,7 +8,15 @@ public class Item {
     private int quality;
 
     public static Item of(String name, int sellByDate, int quality) {
-        return new Item(name, sellByDate, quality);
+        if (name.equals("Aged Brie")) {
+            return new AgedBrie(name, sellByDate, quality);
+        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return new BackStagePasses(name, sellByDate, quality);
+        } else if (name.equals("Sulfuras, Hand of Ragnaros")) {
+            return new Sulfuras(name, sellByDate, quality);
+        } else {
+            return new NormalItem(name, sellByDate, quality);
+        }
     }
 
     public Item(String name, int sellByDate, int quality) {
