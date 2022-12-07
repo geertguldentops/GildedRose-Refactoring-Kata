@@ -2,12 +2,13 @@ package com.gildedrose;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 class GildedRose {
 
-    private final Collection<Item> items;
+    private final List<Item> items;
 
-    public GildedRose(Collection<Item> items) {
+    public GildedRose(List<Item> items) {
         this.items = items;
     }
 
@@ -17,7 +18,9 @@ class GildedRose {
 
     // TODO: Do not rename method (reason to rename: it also updates sellByDate, better refactor --> encapsulate sellByDate in Item so it becomes an implementation detail)
     public void updateQuality() {
-        for (Item item : items) {
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+
             if (item.isNormal()) {
                 item.decreaseQuality(1);
 
