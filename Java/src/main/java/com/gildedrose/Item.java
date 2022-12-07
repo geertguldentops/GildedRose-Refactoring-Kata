@@ -16,7 +16,7 @@ public abstract class Item {
         };
     }
 
-    public Item(String name, int sellByDate, int quality) {
+    protected Item(String name, int sellByDate, int quality) {
         this.name = name;
         this.sellByDate = sellByDate;
         this.quality = quality;
