@@ -38,7 +38,10 @@ class GildedRose {
 
                 items.set(i, backStagePasses);
             } else if (item.isSulfuras()) {
-                // Do Nothing
+                var sulfuras = new Sulfuras(item.getName(), item.getSellByDate(), item.getQuality());
+                sulfuras.updateQuality();
+
+                items.set(i, sulfuras);
             }
         }
     }
