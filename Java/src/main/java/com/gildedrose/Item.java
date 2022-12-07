@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
     private final String name;
 
@@ -50,9 +50,7 @@ public class Item {
         this.sellByDate = getSellByDate() - 1;
     }
 
-    public void updateQuality() {
-
-    }
+    public abstract void updateQuality();
 
     public int getQuality() {
         return quality;
