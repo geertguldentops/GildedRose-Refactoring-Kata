@@ -2,10 +2,10 @@ package com.gildedrose;
 
 public abstract class Item {
 
-    private final String name;
+    protected final String name;
 
-    private int sellByDate;
-    private int quality;
+    protected int sellByDate;
+    protected int quality;
 
     public static Item of(String name, int sellByDate, int quality) {
         return switch (name) {
@@ -30,35 +30,15 @@ public abstract class Item {
         return sellByDate;
     }
 
-    public void decreaseSellByDate() {
-        this.sellByDate = getSellByDate() - 1;
-    }
-
-    public abstract void updateQuality();
-
     public int getQuality() {
         return quality;
     }
 
-    public void decreaseQuality(int degradationRate) {
-        if (quality > 0) {
-            this.quality = getQuality() - degradationRate;
-        }
-    }
-
-    public void increaseQuality(int improvementRate) {
-        if (quality < 50) {
-            this.quality = getQuality() + improvementRate;
-        }
-    }
-
-    public void dropQualityToZero() {
-        this.quality = 0;
-    }
+    public abstract void updateQuality();
 
     @Override
     public String toString() {
-        return this.getName() + ", " + this.getSellByDate() + ", " + this.getQuality();
+        return this.getName() + ", " + getSellByDate() + ", " + this.getQuality();
     }
 
 }
