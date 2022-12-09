@@ -14,6 +14,7 @@ public abstract class Item {
             case "Aged Brie" -> new AgedBrie(name, sellByDate, quality);
             case "Backstage passes to a TAFKAL80ETC concert" -> new BackStagePasses(name, sellByDate, quality);
             case "Sulfuras, Hand of Ragnaros" -> new Sulfuras(name, sellByDate, quality);
+            case "Conjured" -> new ConjuredItem(name, sellByDate, quality);
             default -> new NormalItem(name, sellByDate, quality);
         };
     }

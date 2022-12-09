@@ -310,6 +310,67 @@ class GildedRoseTest {
     }
 
     @Nested
+    class ConjuredItem {
+
+        @Test
+        void conjured_item_sell_by_date_and_quality_go_down_by_2_each_day_when_sell_by_date_is_positive() {
+            var app = new GildedRose(List.of(Item.of("Conjured", 7, 5)));
+
+            app.updateQuality();
+
+            assertThat(app.getItems())
+                    .hasSize(1)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
+                    .containsOnly(
+                            tuple("Conjured", 6, 3)
+                    );
+        }
+
+        @Test
+        void conjured_item_sell_by_date_and_quality_go_down_by_4_each_day_when_sell_by_date_now() {
+            var app = new GildedRose(List.of(Item.of("Conjured", 0, 5)));
+
+            app.updateQuality();
+
+            assertThat(app.getItems())
+                    .hasSize(1)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
+                    .containsOnly(
+                            tuple("Conjured", -1, 1)
+                    );
+        }
+
+        @Test
+        void conjured_item_degrades_in_quality_twice_as_fast_when_sell_by_date_has_passed() {
+            var app = new GildedRose(List.of(Item.of("Conjured", -1, 5)));
+
+            app.updateQuality();
+
+            assertThat(app.getItems())
+                    .hasSize(1)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
+                    .containsOnly(
+                            tuple("Conjured", -2, 1)
+                    );
+        }
+
+        @Test
+        void conjured_item_quality_is_never_negative_even_when_sell_by_day_has_passed() {
+            var app = new GildedRose(List.of(Item.of("Conjured", -1, 4)));
+
+            app.updateQuality();
+
+            assertThat(app.getItems())
+                    .hasSize(1)
+                    .extracting(Item::getName, Item::getSellByDate, Item::getQuality)
+                    .containsOnly(
+                            tuple("Conjured", -2, 0)
+                    );
+        }
+
+    }
+
+    @Nested
     class MultipleItems {
 
         @Test
