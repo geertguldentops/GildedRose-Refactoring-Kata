@@ -1,9 +1,11 @@
 package com.gildedrose;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public abstract class Item {
 
     protected final String name;
-
     protected int sellByDate;
     protected int quality;
 
@@ -35,6 +37,14 @@ public abstract class Item {
     }
 
     public abstract void updateQuality();
+
+    protected void updateQuality(int changeRate) {
+        this.quality = min(max(quality + changeRate, 0), 50);
+    }
+
+    protected void updateSellByDate() {
+        this.sellByDate = sellByDate - 1;
+    }
 
     @Override
     public String toString() {

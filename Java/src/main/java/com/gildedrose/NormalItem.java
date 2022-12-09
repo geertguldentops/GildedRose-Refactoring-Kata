@@ -8,16 +8,11 @@ public class NormalItem extends Item {
 
     @Override
     public void updateQuality() {
-        if (quality > 0) {
-            this.quality = getQuality() - 1;
-        }
-
-        this.sellByDate = sellByDate - 1;
+        updateQuality(-1);
+        updateSellByDate();
 
         if (sellByDate < 0) {
-            if (quality > 0) {
-                this.quality = getQuality() - 1;
-            }
+            updateQuality(-1);
         }
     }
 

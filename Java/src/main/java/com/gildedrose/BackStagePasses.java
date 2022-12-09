@@ -8,26 +8,19 @@ public class BackStagePasses extends Item {
 
     @Override
     public void updateQuality() {
-        if (quality < 50) {
-            this.quality = getQuality() + 1;
-        }
+        updateQuality(1);
 
         if (sellByDate < 11) {
-            if (quality < 50) {
-                this.quality = getQuality() + 1;
-            }
-
+            updateQuality(1);
         }
         if (sellByDate < 6) {
-            if (quality < 50) {
-                this.quality = getQuality() + 1;
-            }
+            updateQuality(1);
         }
 
-        this.sellByDate = sellByDate - 1;
+        updateSellByDate();
 
         if (sellByDate < 0) {
-            this.quality = 0;
+            updateQuality(-getQuality());
         }
     }
 
