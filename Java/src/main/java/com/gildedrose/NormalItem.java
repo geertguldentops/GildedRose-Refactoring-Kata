@@ -7,13 +7,8 @@ public class NormalItem extends Item {
     }
 
     @Override
-    public void updateQuality() {
-        updateQuality(-1);
-        updateSellByDate();
-
-        if (sellByDate < 0) {
-            updateQuality(-1);
-        }
+    protected int changeRate() {
+        return -1;
     }
 
 }

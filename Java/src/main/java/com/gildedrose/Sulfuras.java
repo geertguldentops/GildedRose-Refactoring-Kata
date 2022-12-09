@@ -7,8 +7,18 @@ public class Sulfuras extends Item {
     }
 
     @Override
-    public void updateQuality() {
-        // Do Nothing
+    protected void updateSellByDate() {
+        // Sulfuras never changes!
+    }
+
+    @Override
+    protected void updateQuality(int changeRate) {
+        // Sulfuras never changes!
+    }
+
+    @Override
+    protected int changeRate() {
+        return 0;
     }
 
 }

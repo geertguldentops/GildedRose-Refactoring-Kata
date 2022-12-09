@@ -7,21 +7,27 @@ public class BackStagePasses extends Item {
     }
 
     @Override
-    public void updateQuality() {
+    protected void updateQualityBeforeSellByDate() {
         updateQuality(1);
 
-        if (sellByDate < 11) {
+        if (getSellByDate() < 11) {
             updateQuality(1);
         }
-        if (sellByDate < 6) {
+        if (getSellByDate() < 6) {
             updateQuality(1);
         }
+    }
 
-        updateSellByDate();
-
-        if (sellByDate < 0) {
+    @Override
+    protected void updateQualityAfterSellByDate() {
+        if (getSellByDate() < 0) {
             updateQuality(-getQuality());
         }
+    }
+
+    @Override
+    protected int changeRate() {
+        return 1;
     }
 
 }
